@@ -1,0 +1,9 @@
+{
+  "platform": "Ubuntu 22.04.5 / aarch64 / ROS2 Humble",
+  "scope": "Notes and task-owned source; external software and runtime binaries are excluded",
+  "sdk_upstream": "https://github.com/Livox-SDK/Livox-SDK2",
+  "sdk_runtime_version": "1.5.2",
+  "driver_upstream": "https://github.com/Livox-SDK/livox_ros_driver2",
+  "driver_commit": "21445540f0d100dc86a7e6df312dd70bbdb4afdf",
+  "sdk_commit": "c0796f04c143143899c87a773d9f6b7136453c0b"
+}

@@ -1,0 +1,17 @@
+# 这是示例，不能直接代替你电脑中已有的整个 SSH config 文件。
+# 将这一段追加到 Windows 的 C:\Users\你的用户名\.ssh\config。
+Host raspberrypi-livox
+    # HostName 使用树莓派 Wi-Fi 地址；若 DHCP 地址改变，需要更新。
+    HostName 192.168.0.103
+    # 树莓派上的登录用户。
+    User xin
+    # 默认 SSH 端口。
+    Port 22
+    # 私钥保存在 Windows 本机；不要上传 GitHub。
+    IdentityFile ~/.ssh/id_ed25519_raspberrypi
+    # 仅尝试指定的身份，减少其他密钥造成的认证干扰。
+    IdentitiesOnly yes
+    # 空闲时每 30 秒检测连接。
+    ServerAliveInterval 30
+    # 连续 3 次无回复后，客户端会报告连接已断开。
+    ServerAliveCountMax 3

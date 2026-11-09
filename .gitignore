@@ -1,0 +1,46 @@
+# ROS2 / CMake 构建输出（不提交到版本库）
+build/
+install/
+log/
+CMakeFiles/
+CMakeCache.txt
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+.venv/
+
+# 数据、软件包和备份
+*.pcd
+*.bag
+*.db3
+*.mcap
+*.deb
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.xz
+
+# 认证信息
+.ssh/
+.env
+.env.*
+*.pem
+*.key
+id_ed25519*
+id_rsa*
+authorized_keys*
+known_hosts*
+session-known-hosts
+livox-session-key*
+
+# 二进制与编辑器临时文件
+*.so
+*.so.*
+*.a
+*.o
+*.exe
+*.dll
+.vscode/
+*.swp

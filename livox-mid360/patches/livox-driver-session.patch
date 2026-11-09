@@ -1,0 +1,121 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -228,14 +228,6 @@
+   find_package(builtin_interfaces REQUIRED)
+   find_package(rosidl_default_generators REQUIRED)
+ 
+-  # check apr
+-  find_package(PkgConfig)
+-  pkg_check_modules(APR apr-1)
+-  if (APR_FOUND)
+-    message(${APR_INCLUDE_DIRS})
+-    message(${APR_LIBRARIES})
+-  endif (APR_FOUND)
+-
+   # generate custom msg headers
+   set(LIVOX_INTERFACES livox_interfaces2)
+   rosidl_generate_interfaces(${LIVOX_INTERFACES}
+@@ -295,7 +287,7 @@
+   # include file direcotry
+   target_include_directories(${PROJECT_NAME} PUBLIC
+     
+-    ${APR_INCLUDE_DIRS}
++    
+     ${LIVOX_LIDAR_SDK_INCLUDE_DIR}
+     ${LIVOX_INTERFACES_INCLUDE_DIRECTORIES}   # for custom msgs
+     3rdparty
+@@ -309,7 +301,7 @@
+     ${PPT_LIBRARY}
+     ${Boost_LIBRARY}
+     
+-    ${APR_LIBRARIES}
++    
+   )
+ 
+   rclcpp_components_register_node(${PROJECT_NAME}
+--- a/package.xml
++++ b/package.xml
+@@ -27,7 +27,7 @@
+   <test_depend>ament_lint_common</test_depend>
+ 
+   <depend>git</depend>
+-  <depend>apr</depend>
++  
+ 
+   <export>
+     <build_type>ament_cmake</build_type>
+--- a/package_ROS2.xml
++++ b/package_ROS2.xml
+@@ -27,7 +27,7 @@
+   <test_depend>ament_lint_common</test_depend>
+ 
+   <depend>git</depend>
+-  <depend>apr</depend>
++  
+ 
+   <export>
+     <build_type>ament_cmake</build_type>
+--- a/src/driver_node.cpp
++++ b/src/driver_node.cpp
+@@ -32,10 +32,19 @@
+ }
+ 
+ DriverNode::~DriverNode() {
+-  lddc_ptr_->lds_->RequestExit();
++  // Make the exit future ready before waking poll threads that have no data.
+   exit_signal_.set_value();
+-  pointclouddata_poll_thread_->join();
+-  imudata_poll_thread_->join();
++  if (lddc_ptr_ && lddc_ptr_->lds_) {
++    lddc_ptr_->lds_->RequestExit();
++    lddc_ptr_->lds_->pcd_semaphore_.Signal();
++    lddc_ptr_->lds_->imu_semaphore_.Signal();
++  }
++  if (pointclouddata_poll_thread_ && pointclouddata_poll_thread_->joinable()) {
++    pointclouddata_poll_thread_->join();
++  }
++  if (imudata_poll_thread_ && imudata_poll_thread_->joinable()) {
++    imudata_poll_thread_->join();
++  }
+ }
+ 
+ } // namespace livox_ros
+--- a/src/lds.h
++++ b/src/lds.h
+@@ -27,6 +27,7 @@
+ #ifndef LIVOX_ROS_DRIVER_LDS_H_
+ #define LIVOX_ROS_DRIVER_LDS_H_
+ 
++#include <atomic>
+ #include <map>
+ 
+ #include "comm/semaphore.h"
+@@ -75,7 +76,7 @@
+   double publish_freq_;
+   uint8_t data_src_;
+  private:
+-  volatile bool request_exit_;
++  std::atomic<bool> request_exit_;
+ };
+ 
+ }  // namespace livox_ros
+--- a/src/lddc.cpp
++++ b/src/lddc.cpp
+@@ -199,7 +199,7 @@
+ }
+ 
+ void Lddc::PublishPointcloud2(LidarDataQueue *queue, uint8_t index) {
+-  while(!QueueIsEmpty(queue)) {
++  while(!lds_->IsRequestExit() && !QueueIsEmpty(queue)) {
+     StoragePacket pkg;
+     QueuePop(queue, &pkg);
+     if (pkg.points.empty()) {
+@@ -215,7 +215,7 @@
+ }
+ 
+ void Lddc::PublishCustomPointcloud(LidarDataQueue *queue, uint8_t index) {
+-  while(!QueueIsEmpty(queue)) {
++  while(!lds_->IsRequestExit() && !QueueIsEmpty(queue)) {
+     StoragePacket pkg;
+     QueuePop(queue, &pkg);
+     if (pkg.points.empty()) {

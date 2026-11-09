@@ -1,0 +1,15 @@
+{
+  "observer": "native_cpp",
+  "warmup_seconds": 5,
+  "measurement_seconds": 25,
+  "cloud_count": 250,
+  "cloud_rate_hz": 10.0002,
+  "cloud_points_min": 19872,
+  "cloud_points_max": 20160,
+  "finite_points_checked": 4999776,
+  "invalid_clouds": 0,
+  "imu_count": 5001,
+  "imu_rate_hz": 199.994,
+  "invalid_imus": 0,
+  "passed": true
+}

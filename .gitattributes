@@ -1,0 +1,9 @@
+# 保证 Linux 运行的脚本使用 LF 换行。
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.cpp text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+# 补丁的上下文行必须保留原空白；不按普通文档检查行末空格。
+*.patch text eol=lf whitespace=-blank-at-eol

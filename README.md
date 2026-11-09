@@ -1,2 +1,15 @@
 # Ubuntu22.04--ros2_humble--Raspberry_pi5--mid-360
 基于Ubuntu22.04操作系统，使用ros2_humble开发库在树莓派5上跑mid-360的数据采集
+
+## 配置过程、代码和远程开发
+
+完整资料见 [livox-mid360](livox-mid360/README.md)，包括带中文注释的启动脚本、原生点云/IMU检查器、故障排查报告，以及 VS Code Remote-SSH 和 GitHub 使用教程。
+
+- [Windows VS Code 连接树莓派](livox-mid360/docs/01-remote-ssh.md)
+- [用 Git 管理脚本和 Markdown](livox-mid360/docs/02-git-and-github.md)
+- [本次雷达配置故障报告](livox-mid360/docs/04-troubleshooting-report.md)
+- [脚本和检查器逐条讲解](livox-mid360/docs/05-script-explanation.md)
+
+2026-11-09 已用真实 MID360 在树莓派上验证：点云约 10 Hz、IMU 约 200 Hz，检查结果见 [实际测试 JSON](livox-mid360/evidence/2026-11-09-stream-result.json)。
+
+仓库保存源码和操作记录。运行依赖与编译产物单独管理；克隆仓库不会自动安装完整雷达运行环境。
