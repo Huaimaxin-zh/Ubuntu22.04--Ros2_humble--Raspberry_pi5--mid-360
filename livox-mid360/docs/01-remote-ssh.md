@@ -138,3 +138,5 @@ pwd
 | VS Code Server / Git 报文件异常 | 原系统已有文件损坏可能影响其他程序；本次独立 ROS 环境不保证修复了系统所有工具 |
 
 先在本机 PowerShell 运行 `ssh -v raspberrypi-livox` 获取连接诊断，再按具体错误处理。不要把密码、私钥或访问令牌写进问题记录。
+
+本次还遇到了 CLI 已启动、完整 VS Code Server 下载却在约 33% 中断的情况。改由 Windows 下载并通过 SSH 传输后连接成功；具体证据、设置备份和回滚方法见 [Remote-SSH 初始化故障记录](06-remote-ssh-troubleshooting.md)。

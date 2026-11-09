@@ -10,6 +10,7 @@
 | --- | --- |
 | 从系统检查、接线到最终验收，按顺序回顾全过程 | [本次配置全过程](docs/00-full-process.md) |
 | 用 Windows VS Code 连接树莓派 | [Remote-SSH 逐步操作](docs/01-remote-ssh.md) |
+| Remote-SSH 一直初始化、下载中断时怎么处理 | [本次连接故障记录](docs/06-remote-ssh-troubleshooting.md) |
 | 把代码和 Markdown 放到现有 GitHub 仓库 | [GitHub 和 Git 操作](docs/02-git-and-github.md) |
 | 以后持续记录每次配置、报错和解决过程 | [记录方法和工作流程](docs/03-recording-workflow.md) |
 | 了解这次究竟出了什么问题、怎么修复 | [完整故障报告](docs/04-troubleshooting-report.md) |
