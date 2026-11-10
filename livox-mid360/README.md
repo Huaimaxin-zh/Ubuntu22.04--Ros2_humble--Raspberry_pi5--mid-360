@@ -8,7 +8,7 @@
 
 2026-11-10 新卡进展：用户重新烧录的新 SD 卡已完成 ROS2 Humble 基础开发环境及 Git 配置，本机通信、C++ 编译运行、rosdep 与 Git 仓库检查通过。见 [新卡配置记录](docs/09-ros2-git-new-card-setup.md) 和 [精选验收 JSON](evidence/2026-11-10-ros2-git-new-card-setup.json)。
 
-**新卡当前软件已准备好：Livox-SDK2、livox_ros_driver2 和 FAST-LIO 编译安装完成，13 项软件检查通过。使用 [runtime/pi5](runtime/pi5/README.md) 的新卡运行脚本，上一级 runtime 文件保留作旧卡历史记录。** 本轮未启动驱动，FAST-LIO 仅在隔离环境做无输入软件初始化，实机采集和建图待用户通知。见 [本轮软件记录](docs/10-livox-fastlio-new-card-setup.md) 与 [验收 JSON](evidence/2026-11-10-livox-fastlio-software-ready.json)。
+**新卡已完成真实三阶段验收：点云 10 Hz、IMU 200 Hz，FAST-LIO 注册点云和里程计 10 Hz；PCD 保存 17802 点，默认算法、保存算法及驱动正常停止。** SDK 退出时 spdlog 符号冲突已通过本地链接补丁修复。见 [实机记录](docs/11-mid360-fastlio-live-acceptance.md) 与 [结果 JSON](evidence/2026-11-10-mid360-fastlio-live-acceptance.json)。使用 [runtime/pi5](runtime/pi5/README.md) 的新卡运行脚本，上一级 runtime 保留作旧卡历史记录。此前仅软件检查阶段的事实保留在 [软件记录](docs/10-livox-fastlio-new-card-setup.md)。
 
 ## 先看哪里
 
@@ -26,6 +26,7 @@
 | 逐条理解本次SD卡维修用过的指令、风险和yes/no选择 | [维修指令说明](docs/08-sd-card-recovery-commands.md) |
 | 新卡安装 ROS2 Humble、配置 Git，并理解实际验收结果 | [新卡配置记录](docs/09-ros2-git-new-card-setup.md)、[带注释脚本](scripts/setup/README.md) |
 | 新卡安装 SDK2、驱动和 FAST-LIO，理解软件验收与实机验收边界 | [软件配置记录](docs/10-livox-fastlio-new-card-setup.md)、[安装脚本](scripts/stack/README.md)、[新卡运行脚本](runtime/pi5/README.md) |
+| 看真实点云、IMU、算法输出、PCD 与退出检查，理解 SDK 修复 | [实机验收记录](docs/11-mid360-fastlio-live-acceptance.md)、[原生检查器](scripts/stack/native-verifier/README.md)、[SDK 补丁](patches/README.md) |
 
 ## 目录用途
 
@@ -42,6 +43,7 @@ archive/session-scripts/ 本次现场恢复命令，仅供复盘
 examples/                SSH 配置示例，不含密钥
 scripts/setup/           新卡 ROS2 配置与验收脚本、最小 C++ 验证源码
 scripts/stack/           新卡 SDK2、驱动与 FAST-LIO 安装和检查脚本
+scripts/stack/native-verifier/  新卡低开销 C++ 实收检查器源码
 runtime/pi5/             新卡当前采用的运行脚本（上级 runtime 为旧卡历史）
 configs/pi5/             新卡配置的版本记录与实际部署位置说明
 ```
@@ -94,6 +96,6 @@ Windows VS Code
 
 ## 历史故障与当前验收边界
 
-旧卡原系统的 APT/dpkg、ROS 和 SDK 文件损坏没有整体修复，当时通过独立目录恢复了采集。现在重新烧录的新卡已完成基础 ROS2 和雷达软件准备，但真实雷达采集、实机 FAST-LIO 建图、跨 Wi-Fi 接收与长期稳定性仍需分别测试。此仓库不包含运行依赖、SD 卡镜像、点云原始数据或 SSH 密钥。
+旧卡原系统的 APT/dpkg、ROS 和 SDK 文件损坏没有整体修复，当时通过独立目录恢复了采集。重新烧录的新卡已完成基础 ROS2、真实雷达采集、短时 FAST-LIO 输出、PCD 内容及正常停止验收；建图精度、重新标定、闭环、跨 Wi-Fi 接收与长期稳定性仍需分别测试。此仓库不包含运行依赖、SD 卡镜像、点云原始数据或 SSH 密钥。
 
 上游源码和版本见 [upstream-versions.json](upstream-versions.json)，来源和许可说明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

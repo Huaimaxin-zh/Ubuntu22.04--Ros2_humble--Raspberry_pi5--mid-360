@@ -2,6 +2,8 @@
 
 日期：2026-11-10，北京时间。设备为树莓派5、Ubuntu 22.04.5 ARM64、ROS2 Humble，用户名 `xin`。本文记录新 SD 卡的软件配置，不改变旧卡维修报告的结论。
 
+**后续状态：真实三阶段采集、FAST-LIO 输出、PCD 和正常停止已通过，见 [实机验收记录](11-mid360-fastlio-live-acceptance.md)。本文保留软件准备阶段当时的状态。** 仓库 `build_sdk2.sh` 已更新为校验并应用后续 SDK 符号绑定补丁；实收检查改用低开销原生工具，以下初期 Python 验收示例保留作过程记录，当前复查应按新记录执行。
+
 **本轮按用户要求完成软件准备，没有启动雷达驱动、真实雷达采集或实机建图。** FAST-LIO 确实在独立 Domain 177、本机通信范围内短暂启动过，用于无输入初始化检查，随后正常退出。后续接线、雷达数据、建图和地图保存验收，需要用户通知后另行进行。软件检查通过不能写成“雷达与建图已经实机跑通”。本轮不安装或使用 Livox Viewer，FAST-LIO 启动参数也设为 `rviz:=false`。
 
 本记录接续 [新卡 ROS2 / Git 配置](09-ros2-git-new-card-setup.md)。源码脚本见 [scripts/stack](../scripts/stack/README.md)，新卡运行脚本见 [runtime/pi5](../runtime/pi5/README.md)，配置记录见 [configs/pi5](../configs/pi5/README.md)，完整软件验收见 [结果 JSON](../evidence/2026-11-10-livox-fastlio-software-ready.json)。

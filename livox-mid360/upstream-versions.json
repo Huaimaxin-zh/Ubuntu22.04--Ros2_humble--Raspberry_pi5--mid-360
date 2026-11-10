@@ -9,5 +9,13 @@
   "fast_lio_upstream": "https://github.com/Ericsii/FAST_LIO_ROS2",
   "fast_lio_commit": "2fffc570a25d0df172720bac034fbdb6a13d2162",
   "ikd_tree_commit": "e2e3f4e9d3b95a9e66b1ba83dc98d4a05ed8a3c4",
-  "new_card_checkpoint": "evidence/2026-11-10-livox-fastlio-software-ready.json"
+  "new_card_checkpoint": "evidence/2026-11-10-livox-fastlio-software-ready.json",
+  "new_card_live_checkpoint": "evidence/2026-11-10-mid360-fastlio-live-acceptance.json",
+  "new_card_sdk_source_state": "official base commit plus local Linux shared-library symbol-binding patch",
+  "new_card_sdk_patch": "patches/sdk-spdlog-symbol-binding.patch",
+  "new_card_sdk_patch_sha256": "663a32a45aa5d067d503a1e9bc5e6e176b0d28951dc3fb7e0d47a980ef8d9737",
+  "new_card_sdk_patched_cmake_sha256": "10244ef009035975fa391a015a72634f3eba768fe13b8b02829967529dba1066",
+  "new_card_sdk_library_sha256": "2afc324484893ea44e63ded891709bdba5ce5501e80f89c2ae8e6e235a3636b7",
+  "new_card_driver_source_state": "official base commit, config changed; ineffective shutdown trial reverted",
+  "new_card_driver_lds_lidar_cpp_sha256": "637cac3ab27239717bb434ac35210551a98d17b08153e7205eb733da84a1153d"
 }

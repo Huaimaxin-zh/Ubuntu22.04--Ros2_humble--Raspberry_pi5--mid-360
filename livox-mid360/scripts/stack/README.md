@@ -1,8 +1,8 @@
 # 新卡 MID360 / FAST-LIO 软件配置脚本
 
-本目录保存 2026-11-10 在树莓派5新卡上实际使用的中文注释脚本。完整过程、两次故障与最终软件验收见 [配置记录](../../docs/10-livox-fastlio-new-card-setup.md)，结果见 [JSON](../../evidence/2026-11-10-livox-fastlio-software-ready.json)。
+本目录保存 2026-11-10 在树莓派5新卡上实际使用的中文注释脚本。软件准备见 [软件配置记录](../../docs/10-livox-fastlio-new-card-setup.md)；真实采集、建图输出、PCD 和停止修复见 [实机验收记录](../../docs/11-mid360-fastlio-live-acceptance.md) 与 [结果 JSON](../../evidence/2026-11-10-mid360-fastlio-live-acceptance.json)。
 
-当前树莓派的软件已经安装并通过 13 项软件检查，不需要重跑安装。本轮没有启动雷达驱动，真实点云、IMU 和建图性能待用户通知后验收。
+当前树莓派已安装并完成真实三阶段验收，不需要重跑安装：输入点云 10 Hz、IMU 200 Hz，FAST-LIO 注册点云与里程计 10 Hz，PCD 保存和三个节点正常停止通过。`build_sdk2.sh` 已更新为校验并幂等应用正式 SDK 符号绑定补丁。
 
 ## 目录和安装次序
 
@@ -11,13 +11,16 @@
 | 次序 | 脚本 | 身份和作用 |
 | --- | --- | --- |
 | 1 | `install_dependencies.sh` | sudo；检查系统，配置 eth0，模拟并安装 PCL/Eigen/APR 与 ROS 转换依赖 |
-| 2 | `build_sdk2.sh` | xin；核对锁定提交，编译并安装 SDK2 到 `~/livox_sdk2` |
+| 2 | `build_sdk2.sh` | xin；核对锁定提交和 SDK 补丁 SHA256，幂等应用后编译安装到 `~/livox_sdk2` |
 | 3 | `verify_dependencies.sh` | xin；检查实际包状态、带版本号的 PCL 模块和 CMake 配置 |
 | 4 | `configure_stack.py` | xin；首次从上游原件生成本卡 JSON/YAML，选择 ROS2 package.xml |
 | 5 | `build_ros_stack.sh` | xin；先驱动再 FAST-LIO，单线程编译，最终采用 `-O1` 和 GCC 内存回收参数 |
 | 6 | `check_headless_ready.py` | xin；不启动驱动，短暂启动隔离的无输入 FAST-LIO，检查初始化并正常停止 |
 | 7 | `collect_software_evidence.py` | xin；收集版本、状态和已经生成的软件检查结果 |
-| 后续 | `verify_live_stream.py` | xin；用户通知接好雷达后，实际订阅输入和建图输出进行验收；本轮未运行 |
+| 历史 | `verify_live_stream.py` | 早期 Python 观察器；首轮点云与 IMU 同订阅负载过高，不再作为最终验收入口 |
+| 实机 | `native-verifier/` | 低开销 C++ 观察器；实收数量、频率、时间戳、基础几何与时间对应检查 |
+| 实机 | `run_live_acceptance.py` | 启动自己管理的驱动和算法，分三阶段调用原生观察器、保存地图、核对退出 |
+| 实机 | `check_saved_pcd.py` | 只读检查 binary PCD 结构、精确 payload、1024 点 XYZ 抽样和 SHA256 |
 
 依赖安装和 SDK 编译可以分别准备，但 ROS 构建必须在二者完成后运行。FAST-LIO 需要先加载驱动的 CustomMsg 接口。
 
@@ -35,16 +38,38 @@
 
 ```bash
 # 在树莓派 xin 终端创建约定目录；不使用 Windows PowerShell。
-mkdir -p ~/livox_stack_setup
+mkdir -p ~/livox_stack_setup/patches
 
 # 本目录中的文件是安装和检查脚本；复制并不自动安装或启动软件。
 cp ~/projects/raspberrypi-mid360/livox-mid360/scripts/stack/*.sh ~/livox_stack_setup/
 cp ~/projects/raspberrypi-mid360/livox-mid360/scripts/stack/*.py ~/livox_stack_setup/
+
+# SDK构建脚本会校验这一份正式补丁；缺失时停止构建。
+cp ~/projects/raspberrypi-mid360/livox-mid360/patches/sdk-spdlog-symbol-binding.patch \
+   ~/livox_stack_setup/patches/
+
+# 原生检查器只复制源码，必须在ROS驱动构建完成后另行编译。
+cp -r ~/projects/raspberrypi-mid360/livox-mid360/scripts/stack/native-verifier \
+      ~/livox_stack_setup/
 ```
 
 按照上表次序执行对应脚本；管理员密码只在树莓派终端输入，不写入脚本。运行环境的三个脚本另见 [runtime/pi5](../../runtime/pi5/README.md)，配置记录与真实部署位置见 [configs/pi5](../../configs/pi5/README.md)。
 
 `configure_stack.py` 会从上游原始配置重新生成文件；它不是保留所有既有自定义参数的同步工具。重新运行前应备份当前参数并检查差异。
+
+驱动与 FAST-LIO 构建完成后，在实际采集验收前构建原生检查器。下面只构建观察器，不启动雷达：
+
+```bash
+# 加载刚编译的消息接口和 SDK 共享库环境。
+source ~/livox_runtime/env.sh
+
+# 生成到runner约定的build目录，并单线程编译。
+cmake -S ~/livox_stack_setup/native-verifier \
+      -B ~/livox_stack_setup/native-verifier/build -DCMAKE_BUILD_TYPE=Release
+cmake --build ~/livox_stack_setup/native-verifier/build --parallel 1
+```
+
+构建和函数说明见 [原生工具 README](native-verifier/README.md)。当前设备已经完成构建；重做硬件验收时应先关闭自己已有驱动/算法，再按实机记录执行 runner，不能同时启动重复实例。
 
 ## 查看已经完成的软件检查
 

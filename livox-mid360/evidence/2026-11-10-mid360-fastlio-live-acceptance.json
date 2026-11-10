@@ -1,0 +1,463 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-10",
+  "timezone": "Asia/Shanghai",
+  "device": "Raspberry Pi 5 / Ubuntu 22.04.5 aarch64 / ROS2 Humble / newly flashed SD card",
+  "software_checkpoint": "2026-11-10-livox-fastlio-software-ready.json",
+  "provenance": {
+    "final_runner_result": "/home/xin/livox_runtime/logs/live-acceptance-20261110-122914/result.json",
+    "sdk_diagnostic_summary": "sdk-symbol-binding-evidence.json (diagnostic summary retained in the local task archive)",
+    "selection": "Copied counts, windows, rates, content errors, alignment, PCD and shutdown values from final result; raw messages, raw logs and binary files excluded."
+  },
+  "network": {
+    "host_eth0": "192.168.123.4/24",
+    "lidar": "192.168.123.20",
+    "ros_domain_id": 10
+  },
+  "started_at": "2026-11-10T12:29:14.456719+08:00",
+  "finished_at": "2026-11-10T12:31:13.150846+08:00",
+  "passed": true,
+  "phases": {
+    "driver-input": {
+      "observer": "native_cpp",
+      "passed": true,
+      "completed": true,
+      "interrupted": false,
+      "warmup_seconds": 5,
+      "requested_measurement_seconds": 30,
+      "actual_measurement_seconds": 30,
+      "topics": {
+        "lidar": {
+          "topic": "/livox/lidar",
+          "expected_type": "livox_ros_driver2/msg/CustomMsg",
+          "passed": true,
+          "received_samples": 300,
+          "received_hz": 10,
+          "arrival_span_hz": 9.99942232267,
+          "header_span_hz": 10.0001384658,
+          "invalid_stamps": 0,
+          "equal_stamps": 0,
+          "backward_stamps": 0,
+          "invalid_payloads": 0,
+          "publisher_count": 1,
+          "payload_errors": {
+            "empty": 0,
+            "point_num_mismatch": 0,
+            "nonfinite_xyz": 0,
+            "line_out_of_range": 0,
+            "nonfinite_imu": 0,
+            "nonfinite_pose": 0,
+            "nonunit_quaternion": 0
+          },
+          "minimum_points": 19872,
+          "maximum_points": 20160,
+          "xyz_checked": 6000192,
+          "nonzero_xyz": 4062929,
+          "minimum_line": 0,
+          "maximum_line": 3
+        },
+        "imu": {
+          "topic": "/livox/imu",
+          "expected_type": "sensor_msgs/msg/Imu",
+          "passed": true,
+          "received_samples": 6000,
+          "received_hz": 200,
+          "arrival_span_hz": 200.008099831,
+          "header_span_hz": 200.007918186,
+          "invalid_stamps": 0,
+          "equal_stamps": 0,
+          "backward_stamps": 0,
+          "invalid_payloads": 0,
+          "publisher_count": 1,
+          "payload_errors": {
+            "empty": 0,
+            "point_num_mismatch": 0,
+            "nonfinite_xyz": 0,
+            "line_out_of_range": 0,
+            "nonfinite_imu": 0,
+            "nonfinite_pose": 0,
+            "nonunit_quaternion": 0
+          }
+        }
+      },
+      "time_alignment": {
+        "lidar_to_imu": {
+          "passed": true,
+          "maximum_nearest_difference_seconds": 0.035711033,
+          "latest_left_minus_right_seconds": -0.129937557,
+          "tolerance_seconds": 0.25
+        }
+      }
+    },
+    "fastlio-default-stream": {
+      "observer": "native_cpp",
+      "passed": true,
+      "completed": true,
+      "interrupted": false,
+      "warmup_seconds": 5,
+      "requested_measurement_seconds": 30,
+      "actual_measurement_seconds": 30,
+      "topics": {
+        "lidar": {
+          "topic": "/livox/lidar",
+          "expected_type": "livox_ros_driver2/msg/CustomMsg",
+          "passed": true,
+          "received_samples": 300,
+          "received_hz": 10,
+          "arrival_span_hz": 10.0001686848,
+          "header_span_hz": 10.0001409625,
+          "invalid_stamps": 0,
+          "equal_stamps": 0,
+          "backward_stamps": 0,
+          "invalid_payloads": 0,
+          "publisher_count": 1,
+          "payload_errors": {
+            "empty": 0,
+            "point_num_mismatch": 0,
+            "nonfinite_xyz": 0,
+            "line_out_of_range": 0,
+            "nonfinite_imu": 0,
+            "nonfinite_pose": 0,
+            "nonunit_quaternion": 0
+          },
+          "minimum_points": 19872,
+          "maximum_points": 20064,
+          "xyz_checked": 6000096,
+          "nonzero_xyz": 4247196,
+          "minimum_line": 0,
+          "maximum_line": 3
+        },
+        "imu": {
+          "topic": "/livox/imu",
+          "expected_type": "sensor_msgs/msg/Imu",
+          "passed": true,
+          "received_samples": 6000,
+          "received_hz": 200,
+          "arrival_span_hz": 199.999132493,
+          "header_span_hz": 199.999148915,
+          "invalid_stamps": 0,
+          "equal_stamps": 0,
+          "backward_stamps": 0,
+          "invalid_payloads": 0,
+          "publisher_count": 1,
+          "payload_errors": {
+            "empty": 0,
+            "point_num_mismatch": 0,
+            "nonfinite_xyz": 0,
+            "line_out_of_range": 0,
+            "nonfinite_imu": 0,
+            "nonfinite_pose": 0,
+            "nonunit_quaternion": 0
+          }
+        },
+        "cloud": {
+          "topic": "/cloud_registered",
+          "expected_type": "sensor_msgs/msg/PointCloud2",
+          "passed": true,
+          "received_samples": 300,
+          "received_hz": 10,
+          "arrival_span_hz": 9.99991782442,
+          "header_span_hz": 10.0001427024,
+          "invalid_stamps": 0,
+          "equal_stamps": 0,
+          "backward_stamps": 0,
+          "invalid_payloads": 0,
+          "publisher_count": 1,
+          "payload_errors": {
+            "empty": 0,
+            "point_num_mismatch": 0,
+            "nonfinite_xyz": 0,
+            "line_out_of_range": 0,
+            "nonfinite_imu": 0,
+            "nonfinite_pose": 0,
+            "nonunit_quaternion": 0
+          },
+          "minimum_points": 528,
+          "maximum_points": 624,
+          "xyz_checked": 153600,
+          "nonzero_xyz": 153600
+        },
+        "odometry": {
+          "topic": "/Odometry",
+          "expected_type": "nav_msgs/msg/Odometry",
+          "passed": true,
+          "received_samples": 300,
+          "received_hz": 10,
+          "arrival_span_hz": 9.9998838358,
+          "header_span_hz": 10.0001427024,
+          "invalid_stamps": 0,
+          "equal_stamps": 0,
+          "backward_stamps": 0,
+          "invalid_payloads": 0,
+          "publisher_count": 1,
+          "payload_errors": {
+            "empty": 0,
+            "point_num_mismatch": 0,
+            "nonfinite_xyz": 0,
+            "line_out_of_range": 0,
+            "nonfinite_imu": 0,
+            "nonfinite_pose": 0,
+            "nonunit_quaternion": 0
+          },
+          "minimum_quaternion_norm": 1,
+          "maximum_quaternion_norm": 1
+        }
+      },
+      "time_alignment": {
+        "lidar_to_imu": {
+          "passed": true,
+          "maximum_nearest_difference_seconds": 0.079033055,
+          "latest_left_minus_right_seconds": -0.174582169,
+          "tolerance_seconds": 0.25
+        },
+        "registered_cloud_to_lidar": {
+          "passed": true,
+          "maximum_nearest_difference_seconds": 0.100354509,
+          "latest_left_minus_right_seconds": 0.100354509,
+          "tolerance_seconds": 0.25
+        },
+        "odometry_to_registered_cloud": {
+          "passed": true,
+          "maximum_nearest_difference_seconds": 0,
+          "latest_left_minus_right_seconds": 0,
+          "tolerance_seconds": 0.25
+        }
+      }
+    },
+    "fastlio-save-stream": {
+      "observer": "native_cpp",
+      "passed": true,
+      "completed": true,
+      "interrupted": false,
+      "warmup_seconds": 5,
+      "requested_measurement_seconds": 30,
+      "actual_measurement_seconds": 30,
+      "topics": {
+        "lidar": {
+          "topic": "/livox/lidar",
+          "expected_type": "livox_ros_driver2/msg/CustomMsg",
+          "passed": true,
+          "received_samples": 300,
+          "received_hz": 10,
+          "arrival_span_hz": 10.0000896319,
+          "header_span_hz": 9.99989026676,
+          "invalid_stamps": 0,
+          "equal_stamps": 0,
+          "backward_stamps": 0,
+          "invalid_payloads": 0,
+          "publisher_count": 1,
+          "payload_errors": {
+            "empty": 0,
+            "point_num_mismatch": 0,
+            "nonfinite_xyz": 0,
+            "line_out_of_range": 0,
+            "nonfinite_imu": 0,
+            "nonfinite_pose": 0,
+            "nonunit_quaternion": 0
+          },
+          "minimum_points": 19872,
+          "maximum_points": 20160,
+          "xyz_checked": 6000096,
+          "nonzero_xyz": 3932896,
+          "minimum_line": 0,
+          "maximum_line": 3
+        },
+        "imu": {
+          "topic": "/livox/imu",
+          "expected_type": "sensor_msgs/msg/Imu",
+          "passed": true,
+          "received_samples": 6000,
+          "received_hz": 200,
+          "arrival_span_hz": 200.006699141,
+          "header_span_hz": 200.006720386,
+          "invalid_stamps": 0,
+          "equal_stamps": 0,
+          "backward_stamps": 0,
+          "invalid_payloads": 0,
+          "publisher_count": 1,
+          "payload_errors": {
+            "empty": 0,
+            "point_num_mismatch": 0,
+            "nonfinite_xyz": 0,
+            "line_out_of_range": 0,
+            "nonfinite_imu": 0,
+            "nonfinite_pose": 0,
+            "nonunit_quaternion": 0
+          }
+        },
+        "cloud": {
+          "topic": "/cloud_registered",
+          "expected_type": "sensor_msgs/msg/PointCloud2",
+          "passed": true,
+          "received_samples": 300,
+          "received_hz": 10,
+          "arrival_span_hz": 10.0013241014,
+          "header_span_hz": 10.0001423037,
+          "invalid_stamps": 0,
+          "equal_stamps": 0,
+          "backward_stamps": 0,
+          "invalid_payloads": 0,
+          "publisher_count": 1,
+          "payload_errors": {
+            "empty": 0,
+            "point_num_mismatch": 0,
+            "nonfinite_xyz": 0,
+            "line_out_of_range": 0,
+            "nonfinite_imu": 0,
+            "nonfinite_pose": 0,
+            "nonunit_quaternion": 0
+          },
+          "minimum_points": 351,
+          "maximum_points": 630,
+          "xyz_checked": 135444,
+          "nonzero_xyz": 135444
+        },
+        "odometry": {
+          "topic": "/Odometry",
+          "expected_type": "nav_msgs/msg/Odometry",
+          "passed": true,
+          "received_samples": 300,
+          "received_hz": 10,
+          "arrival_span_hz": 10.0012305333,
+          "header_span_hz": 10.0001423037,
+          "invalid_stamps": 0,
+          "equal_stamps": 0,
+          "backward_stamps": 0,
+          "invalid_payloads": 0,
+          "publisher_count": 1,
+          "payload_errors": {
+            "empty": 0,
+            "point_num_mismatch": 0,
+            "nonfinite_xyz": 0,
+            "line_out_of_range": 0,
+            "nonfinite_imu": 0,
+            "nonfinite_pose": 0,
+            "nonunit_quaternion": 0
+          },
+          "minimum_quaternion_norm": 1,
+          "maximum_quaternion_norm": 1
+        }
+      },
+      "time_alignment": {
+        "lidar_to_imu": {
+          "passed": true,
+          "maximum_nearest_difference_seconds": 0.074640312,
+          "latest_left_minus_right_seconds": -0.16830435,
+          "tolerance_seconds": 0.25
+        },
+        "registered_cloud_to_lidar": {
+          "passed": true,
+          "maximum_nearest_difference_seconds": 0.099578754,
+          "latest_left_minus_right_seconds": 0.099578754,
+          "tolerance_seconds": 0.25
+        },
+        "odometry_to_registered_cloud": {
+          "passed": true,
+          "maximum_nearest_difference_seconds": 0,
+          "latest_left_minus_right_seconds": 0,
+          "tolerance_seconds": 0.25
+        }
+      }
+    }
+  },
+  "map": {
+    "checked_at": "2026-11-10T12:31:12.003228+08:00",
+    "path": "/home/xin/livox_runtime/maps/mid360_map.pcd",
+    "passed": true,
+    "scope": "文件结构与抽样坐标有限性，不验证建图精度。",
+    "points": 17802,
+    "bytes": 569913,
+    "payload_bytes": 569664,
+    "expected_payload_bytes": 569664,
+    "sampled_points": 1024,
+    "sampled_xyz_min": [
+      -7.371808052062988,
+      -17.829532623291016,
+      -0.44076111912727356
+    ],
+    "sampled_xyz_max": [
+      14.938980102539062,
+      3.596409559249878,
+      8.050555229187012
+    ],
+    "sha256": "a64df0bbe1c89f4f6ea1751b29c097a956088b904d0f925914bdadb1664c5f31",
+    "header": {
+      "VERSION": "0.7",
+      "FIELDS": "x y z intensity normal_x normal_y normal_z curvature",
+      "SIZE": "4 4 4 4 4 4 4 4",
+      "TYPE": "F F F F F F F F",
+      "COUNT": "1 1 1 1 1 1 1 1",
+      "WIDTH": "17802",
+      "HEIGHT": "1",
+      "VIEWPOINT": "0 0 0 1 0 0 0",
+      "POINTS": "17802",
+      "DATA": "binary"
+    }
+  },
+  "shutdown": {
+    "fastlio-default": {
+      "returncode": 0,
+      "method": "SIGINT",
+      "normal": true,
+      "child_exit_clean": true,
+      "child_exit_errors": []
+    },
+    "fastlio-save": {
+      "returncode": 0,
+      "method": "SIGINT",
+      "normal": true,
+      "child_exit_clean": true,
+      "child_exit_errors": []
+    },
+    "driver": {
+      "returncode": 0,
+      "method": "SIGINT",
+      "normal": true,
+      "child_exit_clean": true,
+      "child_exit_errors": []
+    }
+  },
+  "sdk_exit_fix": {
+    "upstream_commit": "c0796f04c143143899c87a773d9f6b7136453c0b",
+    "patch": "../patches/sdk-spdlog-symbol-binding.patch",
+    "patch_sha256": "663a32a45aa5d067d503a1e9bc5e6e176b0d28951dc3fb7e0d47a980ef8d9737",
+    "sdk_embedded_spdlog": "1.3.1",
+    "ros_system_spdlog": "1.9.2",
+    "gdb_observation": "SIGSEGV in system libspdlog.so.1 during SDK shared_ptr<spdlog::logger> destruction, followed by libc exit",
+    "linker_change": "Linux SDK shared target: -Wl,-Bsymbolic",
+    "elf_symbolic_flag_present": true,
+    "all_exported_symbol_names_unchanged": true,
+    "exported_symbol_count": 1574,
+    "ldd_r_unresolved_symbols": false,
+    "sdk_cmake_sha256_on_this_pi_lf": "10244ef009035975fa391a015a72634f3eba768fe13b8b02829967529dba1066",
+    "sdk_library_sha256_before": "820b55f840096c2feb62d42d33760adaeb3602321182076992165003966d6927",
+    "sdk_library_sha256_after": "2afc324484893ea44e63ded891709bdba5ce5501e80f89c2ae8e6e235a3636b7",
+    "driver_source_restored_upstream": true,
+    "driver_source_sha256": "637cac3ab27239717bb434ac35210551a98d17b08153e7205eb733da84a1153d",
+    "ineffective_driver_cleanup_trial": "Reverted; excluded from published installation artifacts",
+    "build_script_sha256_deployed": "a4957affe20e35b79e20d178e15501520ed01bebbaa5fe12f4a430ee4270604e",
+    "build_script_bash_n_passed": true,
+    "deployed_patch_reverse_apply_check_passed": true
+  },
+  "observer_and_runner_corrections": {
+    "python_observer": "Earlier simultaneous pointcloud/IMU Python observation saturated one CPU core and undercounted IMU; not used as final frequency evidence.",
+    "independent_imu_check": "IMU-only subscription confirmed approximately 200 Hz.",
+    "final_observer": "native_cpp; no Python fallback",
+    "stop_signal": "One SIGINT to owned launch leader; process-group escalation only on timeout",
+    "child_exit_validation": "Requires launch return 0 plus clean child log and no child process died log"
+  },
+  "post_test_checks": {
+    "source": "Main task checks immediately after final acceptance",
+    "no_driver_fastlio_native_verifier_or_gdb_processes": true,
+    "dpkg_audit_output_empty": true,
+    "root_available_space_approx_gb": 21
+  },
+  "scope": "短时真实数据、算法输出与PCD保存；不代表建图精度或长期稳定性。",
+  "not_verified": [
+    "mapping accuracy",
+    "new calibration",
+    "loop closure",
+    "cross-WiFi pointcloud transport",
+    "long-term stability"
+  ]
+}

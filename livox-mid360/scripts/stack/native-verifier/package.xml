@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- 普通用户构建的只读实收验收器，不负责启动或控制任何雷达设备。 -->
+<package format="3">
+  <name>livox_stack_native_verifier</name>
+  <version>0.1.0</version>
+  <description>Low overhead native MID360 and FAST-LIO stream verification.</description>
+  <maintainer email="3339590580@qq.com">huaimaxin</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>rclcpp</depend>
+  <depend>livox_ros_driver2</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>

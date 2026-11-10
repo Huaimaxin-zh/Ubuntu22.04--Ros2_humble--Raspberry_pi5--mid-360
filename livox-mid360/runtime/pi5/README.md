@@ -10,7 +10,7 @@
 | `run_livox.sh` | 检查 eth0 地址和物理链路，启动官方 CustomMsg 驱动 Launch，无 Viewer |
 | `run_fastlio.sh` | 读取 runtime 中的 FAST-LIO YAML，关闭 RViz；可选短时 `--save-map` |
 
-当前软件检查已经完成，**本轮未启动雷达驱动，用户通知接好雷达后再执行运行步骤**。具体两终端方法、预计频率和实际验收工具见 [完整记录](../../docs/10-livox-fastlio-new-card-setup.md#待用户通知后两终端运行与真机验收)。
+当前真实采集与 FAST-LIO 三阶段验收已完成：点云 10 Hz、IMU 200 Hz、算法注册点云和里程计 10 Hz，PCD 保存及正常停止通过。具体两终端方法、SDK 退出修复和原生验收工具见 [实机记录](../../docs/11-mid360-fastlio-live-acceptance.md)。
 
 ## 仓库文件和实际运行目录
 
@@ -34,4 +34,4 @@ cp ~/projects/raspberrypi-mid360/livox-mid360/runtime/pi5/env.sh \
 source ~/livox_runtime/env.sh
 ```
 
-默认关闭整图、轨迹与 PCD 累积；`--save-map` 用于后续 60–120 秒短时检查，完整地图缓存会增长。FAST-LIO 上游部分日志仍写源码 `Log/`，不意味着关闭了所有文件写入。
+默认关闭整图、轨迹与 PCD 累积；`--save-map` 用于短时保存检查，完整地图缓存会增长。本次保存阶段为预热 5 秒和统计 30 秒，另有服务调用与停止时间；不把建议时长当成实际测量时长。FAST-LIO 上游部分日志仍写源码 `Log/`，不意味着关闭了所有文件写入。
