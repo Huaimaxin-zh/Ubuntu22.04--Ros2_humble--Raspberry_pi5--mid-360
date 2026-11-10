@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- 最小 C++ ROS2 包：用于验证本机编译工具、依赖查找和可执行文件安装。 -->
+<package format="3">
+  <name>pi_setup_smoke_cpp</name>
+  <version>0.0.1</version>
+  <description>Local ROS2 Humble development environment check.</description>
+  <maintainer email="3339590580@qq.com">huaimaxin</maintainer>
+  <license>MIT</license>
+  <!-- ament_cmake 提供 ROS2 的 CMake 构建支持。 -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <!-- rclcpp 是 ROS2 的 C++ 客户端库。 -->
+  <depend>rclcpp</depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

@@ -6,6 +6,8 @@
 
 2026-11-10 更新：原SD卡未修复，完整备份已通过校验；完整根分区副本修复后五阶段复查退出0。恢复候选镜像尚未在新卡启动测试，原卡写入可靠性高度可疑，不能仅凭副本检查通过认定原卡或ROS环境已恢复。见[维修记录](docs/07-sd-card-recovery-report.md)。
 
+2026-11-10 新卡进展：用户重新烧录的新 SD 卡已完成 ROS2 Humble 基础开发环境及 Git 配置，本机通信、C++ 编译运行、rosdep 与 Git 仓库检查通过。见 [新卡配置记录](docs/09-ros2-git-new-card-setup.md) 和 [精选验收 JSON](evidence/2026-11-10-ros2-git-new-card-setup.json)。
+
 ## 先看哪里
 
 | 想完成的事 | 文档 |
@@ -20,6 +22,7 @@
 | 看现场构建命令和补丁的适用范围 | [恢复命令留档](archive/README.md)、[补丁说明](patches/README.md) |
 | 了解异常断电后的SD卡故障、备份、修复失败证据和恢复选择 | [SD卡维修记录](docs/07-sd-card-recovery-report.md)、[验收JSON](evidence/2026-11-10-sd-card-recovery.json) |
 | 逐条理解本次SD卡维修用过的指令、风险和yes/no选择 | [维修指令说明](docs/08-sd-card-recovery-commands.md) |
+| 新卡安装 ROS2 Humble、配置 Git，并理解实际验收结果 | [新卡配置记录](docs/09-ros2-git-new-card-setup.md)、[带注释脚本](scripts/setup/README.md) |
 
 ## 目录用途
 
@@ -34,6 +37,7 @@ user-scripts/            后续加入你自己编写的脚本
 patches/                 驱动修改差异和来源说明
 archive/session-scripts/ 本次现场恢复命令，仅供复盘
 examples/                SSH 配置示例，不含密钥
+scripts/setup/           新卡 ROS2 配置与验收脚本、最小 C++ 验证源码
 ```
 
 ## 当前树莓派如何启动
