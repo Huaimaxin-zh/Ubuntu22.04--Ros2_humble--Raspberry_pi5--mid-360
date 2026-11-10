@@ -1,0 +1,188 @@
+{
+  "shutdown": {
+    "temporary_controller_state": "stopped",
+    "gnome_automount_original_setting_restored": false,
+    "card_poweroff_exit": 0
+  },
+  "backup": {
+    "hash_verified_on_windows_and_vm": true,
+    "bytes": 31266439168,
+    "map_covers_whole_card_with_all_plus": true,
+    "read_errors": 0,
+    "filename": "sdcard-original.img",
+    "original_image_repaired_or_overwritten": false,
+    "sha256": "b5db0dc24a2b9e15ac64a6e18e30a423055084363d9bf58bf3cf14a5b7e42dda"
+  },
+  "publication_scope": "Selected small results only; no images, archives, auth tokens, keys, VMX files or raw session requests.",
+  "full_root_copy": {
+    "needs_recovery_after_repair": false,
+    "bytes": 30728502784,
+    "journal_sequence_after_repair": "0x895e",
+    "journal_start_after_repair": 0,
+    "extraction_input_and_readback_sha256": "495e723c6330b7e5cc766d46146095d3e3af05c545fe7b899e1d1380689ae594",
+    "sha256_after_repair": "af04518a5172041a7383da1737ea37f19b100ec076f2899fb2115a5202fc69ff",
+    "filename": "rootfs-work.img",
+    "fsck_readonly_exit": 0
+  },
+  "tasks": {
+    "repair-copy01": {
+      "action": "repair_copy",
+      "started": "2026-11-09T20:31:45.979186+00:00",
+      "finished": "2026-11-09T20:32:28.825450+00:00",
+      "exit_codes": [
+        1
+      ]
+    },
+    "poweroff-final": {
+      "action": "poweroff_card",
+      "started": "2026-11-09T20:37:00.147271+00:00",
+      "finished": "2026-11-09T20:37:01.227877+00:00",
+      "exit_codes": [
+        0
+      ]
+    },
+    "check-card01": {
+      "action": "check_card",
+      "started": "2026-11-09T20:35:00.126373+00:00",
+      "finished": "2026-11-09T20:35:08.907591+00:00",
+      "exit_codes": [
+        4
+      ]
+    },
+    "dump-copy01": {
+      "action": "dump_copy",
+      "started": "2026-11-09T20:34:21.156569+00:00",
+      "finished": "2026-11-09T20:34:21.177923+00:00",
+      "exit_codes": [
+        0
+      ]
+    },
+    "check-boot01": {
+      "action": "check_boot",
+      "started": "2026-11-09T20:35:19.029840+00:00",
+      "finished": "2026-11-09T20:35:19.555536+00:00",
+      "exit_codes": [
+        1
+      ]
+    },
+    "backup01": {
+      "action": "backup",
+      "started": "2026-11-09T17:35:08.093136+00:00",
+      "finished": "2026-11-09T20:27:25.602701+00:00",
+      "exit_codes": [
+        0
+      ]
+    },
+    "check-copy01": {
+      "action": "check_copy",
+      "started": "2026-11-09T20:32:42.480838+00:00",
+      "finished": "2026-11-09T20:32:42.806956+00:00",
+      "exit_codes": [
+        0
+      ]
+    },
+    "repair-card01": {
+      "action": "repair_card",
+      "started": "2026-11-09T20:33:20.737869+00:00",
+      "finished": "2026-11-09T20:33:36.752012+00:00",
+      "exit_codes": [
+        12
+      ]
+    },
+    "hash-original01": {
+      "action": "hash_backup",
+      "started": "2026-11-09T20:28:21.347270+00:00",
+      "finished": "2026-11-09T20:31:04.990100+00:00",
+      "exit_codes": [
+        0
+      ]
+    }
+  },
+  "original_card_comparison": {
+    "journal_start_after_attempt": 11129,
+    "before": [
+      {
+        "offset": 1024,
+        "length": 1024,
+        "sha256": "7e20d751ae8c6612026fc9f0cc896060ad2722d7be92e5a939eeaac38b9bd184"
+      },
+      {
+        "offset": 2281701376,
+        "length": 4096,
+        "sha256": "5960d2bdce0996b6f7fd4a22213e5b152e29b296b1c0733b85261d9435628bb5"
+      }
+    ],
+    "journal_sequence_after_attempt": "0x890f",
+    "both_regions_unchanged": true,
+    "needs_recovery_after_attempt": true,
+    "offsets_relative_to_root_partition": true,
+    "after": [
+      {
+        "offset": 1024,
+        "length": 1024,
+        "sha256": "7e20d751ae8c6612026fc9f0cc896060ad2722d7be92e5a939eeaac38b9bd184"
+      },
+      {
+        "offset": 2281701376,
+        "length": 4096,
+        "sha256": "5960d2bdce0996b6f7fd4a22213e5b152e29b296b1c0733b85261d9435628bb5"
+      }
+    ]
+  },
+  "conclusion": {
+    "boot_partition_dirty_bit_remains": true,
+    "original_card_hardware_failure_proven": false,
+    "pi_boot_validated": false,
+    "write_reliability": "Highly suspect: expected repair updates did not remain.",
+    "whole_card_backup_complete": true,
+    "original_card_repaired": false,
+    "system_file_contents_validated": false,
+    "repaired_full_root_copy_fsck_passed": true
+  },
+  "timezone": "Asia/Shanghai",
+  "recovery_candidate": {
+    "verified_segments": {
+      "prefix": {
+        "bytes": 537919488,
+        "offset": 0,
+        "sha256": "2edcaa50e2048796b3e14a858c43c25d8729d5ce6ae7aadc67887d6b87fd2d14",
+        "matches": "original full-card input"
+      },
+      "root": {
+        "bytes": 30728502784,
+        "offset": 537919488,
+        "sha256": "af04518a5172041a7383da1737ea37f19b100ec076f2899fb2115a5202fc69ff",
+        "matches": "repaired root input"
+      },
+      "suffix": {
+        "bytes": 16896,
+        "offset": 31266422272,
+        "sha256": "f57511198cd295e9187ab5e6153bd837c4ee91d0217ea593d6b767ca37fa74c2",
+        "matches": "original full-card input"
+      }
+    },
+    "bytes": 31266439168,
+    "requires_healthy_new_card_and_boot_test": true,
+    "full_readback_verified": true,
+    "root_geometry": {
+      "filesystem_bytes": 30728499200,
+      "partition_bytes": 30728502784,
+      "trailing_slack_bytes": 3584,
+      "block_bytes": 4096
+    },
+    "boot_partition_preserved_unchanged": true,
+    "filename": "sdcard-recovered.img",
+    "sha256": "a528bc20e1fcc862729582fad39b94cf641fc56898b9f92d882e3933c3bcc330"
+  },
+  "record_date": "2026-11-10",
+  "source_geometry": {
+    "device": "/dev/sdb",
+    "root_size": 30728502784,
+    "root_uuid": "b171cb0e-a208-4406-9f96-31741fd34cdb",
+    "boot": "/dev/sdb1",
+    "size": 31266439168,
+    "root_offset": 537919488,
+    "root": "/dev/sdb2"
+  },
+  "timestamp_note": "Task timestamps use UTC ISO8601; add eight hours for Asia/Shanghai."
+}

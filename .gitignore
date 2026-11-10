@@ -22,6 +22,19 @@ __pycache__/
 *.zip
 *.xz
 
+# SD卡维修：完整镜像、元数据镜像与临时root控制数据仅保留在本机
+*.img
+*.img.*
+*.raw
+*.vmdk
+*.vmem
+*.vmss
+*.vmx
+pi-original-*/
+control/session-*/
+control/active.json
+share-probe-*/
+
 # 认证信息
 .ssh/
 .env
