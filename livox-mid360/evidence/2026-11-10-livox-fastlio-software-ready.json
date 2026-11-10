@@ -1,0 +1,176 @@
+{
+  "recorded_at": "2026-11-10T11:27:25.506527+08:00",
+  "scope": "新卡软件安装、编译和隔离环境启动检查；用户要求雷达以后再启动。",
+  "hardware_data_tested": false,
+  "driver_started": false,
+  "mapping_with_real_data_tested": false,
+  "map_save_with_real_data_tested": false,
+  "platform": {
+    "architecture": "aarch64",
+    "kernel": "6.8.0-1047-raspi",
+    "ros_distro": "humble",
+    "user": "xin"
+  },
+  "upstream": {
+    "sdk2": {
+      "url": "https://github.com/Livox-SDK/Livox-SDK2",
+      "commit": "c0796f04c143143899c87a773d9f6b7136453c0b",
+      "install_prefix": "/home/xin/livox_sdk2"
+    },
+    "driver": {
+      "url": "https://github.com/Livox-SDK/livox_ros_driver2",
+      "commit": "21445540f0d100dc86a7e6df312dd70bbdb4afdf"
+    },
+    "fast_lio": {
+      "url": "https://github.com/Ericsii/FAST_LIO_ROS2",
+      "commit": "2fffc570a25d0df172720bac034fbdb6a13d2162",
+      "ikd_tree_commit": "e2e3f4e9d3b95a9e66b1ba83dc98d4a05ed8a3c4",
+      "release_cxx_flags": "-O1 -DNDEBUG --param=ggc-min-expand=10 --param=ggc-min-heapsize=32768",
+      "build_parallelism": 1
+    }
+  },
+  "states": {
+    "sdk2": "EXIT=0",
+    "original_dependency_script": "EXIT=1 LOG=/home/xin/livox_stack_setup/dependencies-20261110T030454Z.log",
+    "dependency_recheck": "EXIT=0",
+    "ros_stack_build": "EXIT=0",
+    "dpkg_audit_empty": true
+  },
+  "dependency_versions": [
+    "libapr1-dev\t1.7.0-8ubuntu0.22.04.2",
+    "libeigen3-dev\t3.4.0-2ubuntu2",
+    "libpcl-dev\t1.12.1+dfsg-3build1",
+    "ros-humble-pcl-conversions\t2.4.5-2jammy.20260908.043036",
+    "ros-humble-pcl-ros\t2.4.5-2jammy.20260916.132922"
+  ],
+  "network": {
+    "host_ethernet_ip": "192.168.123.4",
+    "lidar_ip": "192.168.123.20",
+    "persistent_config": "/etc/systemd/network/05-livox-eth0.network"
+  },
+  "runtime": {
+    "directory": "/home/xin/livox_runtime",
+    "ros_domain_id": 10,
+    "default_map_en": false,
+    "default_path_en": false,
+    "default_pcd_save_en": false,
+    "save_mode_map_en": true,
+    "save_mode_pcd_save_en": true,
+    "extrinsic_estimation_enabled": false,
+    "extrinsic_T_from_upstream": [
+      -0.011,
+      -0.02329,
+      0.04412
+    ],
+    "viewer_installed_by_this_task": false
+  },
+  "resolved_issues": [
+    "依赖安装本身完成；首次验收使用pcl_common但Jammy实际提供pcl_common-1.12。已修正脚本并普通用户复核通过，原日志保留。",
+    "FAST-LIO首次-O2构建laserMapping.cpp时cc1plus被Killed；结合内存观测按内存不足处理，改用-O1和GCC回收参数。"
+  ],
+  "headless_software_check": {
+    "schema_version": 1,
+    "finished_utc": "2026-11-10T03:26:45.226968+00:00",
+    "hostname": "ubuntu",
+    "passed": true,
+    "scope": "软件依赖、驱动启动文件解析、FAST-LIO 无输入初始化和正常退出；不代表实机采集或建图通过。",
+    "driver_started": false,
+    "lidar_communication_started": false,
+    "hardware_data_tested": false,
+    "map_save_called": false,
+    "interrupted": false,
+    "checks": [
+      {
+        "name": "python_message_imports",
+        "passed": true,
+        "types": [
+          "livox_ros_driver2/msg/CustomMsg",
+          "sensor_msgs/msg/Imu",
+          "sensor_msgs/msg/PointCloud2"
+        ]
+      },
+      {
+        "name": "livox_ros_driver2_executable",
+        "passed": true,
+        "path": "/home/xin/ws_livox/install/livox_ros_driver2/lib/livox_ros_driver2/livox_ros_driver2_node"
+      },
+      {
+        "name": "livox_ros_driver2_dynamic_libraries",
+        "passed": true,
+        "returncode": 0,
+        "timed_out": false,
+        "log": "/home/xin/livox_runtime/logs/headless-ready-20261110T032639949443Z/livox_ros_driver2-ldd.log"
+      },
+      {
+        "name": "fast_lio_executable",
+        "passed": true,
+        "path": "/home/xin/ws_fastlio/install/fast_lio/lib/fast_lio/fastlio_mapping"
+      },
+      {
+        "name": "fast_lio_dynamic_libraries",
+        "passed": true,
+        "returncode": 0,
+        "timed_out": false,
+        "log": "/home/xin/livox_runtime/logs/headless-ready-20261110T032639949443Z/fast_lio-ldd.log"
+      },
+      {
+        "name": "livox_driver_component_library",
+        "passed": true,
+        "path": "/home/xin/ws_livox/install/livox_ros_driver2/lib/liblivox_ros_driver2.so"
+      },
+      {
+        "name": "livox_driver_component_dynamic_libraries",
+        "passed": true,
+        "returncode": 0,
+        "timed_out": false,
+        "sdk_dependency_listed": true,
+        "log": "/home/xin/livox_runtime/logs/headless-ready-20261110T032639949443Z/livox-driver-component-ldd.log"
+      },
+      {
+        "name": "driver_launch_parse_only",
+        "passed": true,
+        "driver_started": false,
+        "returncode": 0,
+        "timed_out": false,
+        "log": "/home/xin/livox_runtime/logs/headless-ready-20261110T032639949443Z/driver-launch-show-args.log"
+      },
+      {
+        "name": "mapping_default_config",
+        "passed": true,
+        "path": "/home/xin/livox_runtime/config/mid360_pi5.yaml",
+        "pcd_save_en": false,
+        "map_en": false
+      },
+      {
+        "name": "fastlio_no_input_initialization",
+        "passed": true,
+        "log": "/home/xin/livox_runtime/logs/headless-ready-20261110T032639949443Z/fastlio-no-input.log",
+        "ros_domain_id": 177,
+        "ros_localhost_only": true,
+        "rviz": false,
+        "hardware_data_tested": false,
+        "alive_when_checked": true
+      },
+      {
+        "name": "map_save_service_advertised_only",
+        "passed": true,
+        "service_called": false,
+        "returncode": 0,
+        "timed_out": false,
+        "log": "/home/xin/livox_runtime/logs/headless-ready-20261110T032639949443Z/software-service-graph.log"
+      },
+      {
+        "name": "fastlio_alive_after_graph_check",
+        "passed": true
+      },
+      {
+        "name": "fastlio_owned_process_shutdown",
+        "passed": true,
+        "method": "SIGINT",
+        "returncode": 0
+      }
+    ],
+    "errors": [],
+    "logs": "/home/xin/livox_runtime/logs/headless-ready-20261110T032639949443Z"
+  }
+}

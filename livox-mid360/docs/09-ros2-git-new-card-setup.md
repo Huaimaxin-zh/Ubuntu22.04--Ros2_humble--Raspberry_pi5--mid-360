@@ -4,6 +4,8 @@
 
 本记录对应用户重新烧录的新 SD 卡。旧卡维修的结论仍以 [SD 卡维修记录](07-sd-card-recovery-report.md) 为准，不能用新卡安装成功证明旧卡已经修复。带中文注释的脚本已归档在 [scripts/setup](../scripts/setup/README.md)，精选验收结果见 [JSON](../evidence/2026-11-10-ros2-git-new-card-setup.json)。
 
+这是基础环境完成时的阶段记录；后续 SDK2、雷达驱动与 FAST-LIO 的软件安装及验收见 [下一阶段记录](10-livox-fastlio-new-card-setup.md)。下表中的“雷达与建图未配置”对应本阶段结束时点，不替代后续进度。
+
 ## 当前状态
 
 | 项目 | 配置与验收情况 |

@@ -8,6 +8,8 @@
 
 2026-11-10 新卡进展：用户重新烧录的新 SD 卡已完成 ROS2 Humble 基础开发环境及 Git 配置，本机通信、C++ 编译运行、rosdep 与 Git 仓库检查通过。见 [新卡配置记录](docs/09-ros2-git-new-card-setup.md) 和 [精选验收 JSON](evidence/2026-11-10-ros2-git-new-card-setup.json)。
 
+**新卡当前软件已准备好：Livox-SDK2、livox_ros_driver2 和 FAST-LIO 编译安装完成，13 项软件检查通过。使用 [runtime/pi5](runtime/pi5/README.md) 的新卡运行脚本，上一级 runtime 文件保留作旧卡历史记录。** 本轮未启动驱动，FAST-LIO 仅在隔离环境做无输入软件初始化，实机采集和建图待用户通知。见 [本轮软件记录](docs/10-livox-fastlio-new-card-setup.md) 与 [验收 JSON](evidence/2026-11-10-livox-fastlio-software-ready.json)。
+
 ## 先看哪里
 
 | 想完成的事 | 文档 |
@@ -23,6 +25,7 @@
 | 了解异常断电后的SD卡故障、备份、修复失败证据和恢复选择 | [SD卡维修记录](docs/07-sd-card-recovery-report.md)、[验收JSON](evidence/2026-11-10-sd-card-recovery.json) |
 | 逐条理解本次SD卡维修用过的指令、风险和yes/no选择 | [维修指令说明](docs/08-sd-card-recovery-commands.md) |
 | 新卡安装 ROS2 Humble、配置 Git，并理解实际验收结果 | [新卡配置记录](docs/09-ros2-git-new-card-setup.md)、[带注释脚本](scripts/setup/README.md) |
+| 新卡安装 SDK2、驱动和 FAST-LIO，理解软件验收与实机验收边界 | [软件配置记录](docs/10-livox-fastlio-new-card-setup.md)、[安装脚本](scripts/stack/README.md)、[新卡运行脚本](runtime/pi5/README.md) |
 
 ## 目录用途
 
@@ -38,11 +41,14 @@ patches/                 驱动修改差异和来源说明
 archive/session-scripts/ 本次现场恢复命令，仅供复盘
 examples/                SSH 配置示例，不含密钥
 scripts/setup/           新卡 ROS2 配置与验收脚本、最小 C++ 验证源码
+scripts/stack/           新卡 SDK2、驱动与 FAST-LIO 安装和检查脚本
+runtime/pi5/             新卡当前采用的运行脚本（上级 runtime 为旧卡历史）
+configs/pi5/             新卡配置的版本记录与实际部署位置说明
 ```
 
-## 当前树莓派如何启动
+## 旧卡历史启动方式（仅复盘）
 
-以下启动方式对应2026-11-09验证通过的运行目录。当前故障原卡尚不能按此直接恢复运行，需先完成新存储的系统恢复与软件验证。在运行环境恢复并核验后执行：
+以下启动方式对应2026-11-09验证通过的旧卡独立恢复目录，保留以便理解历史测试。新卡请使用上面的 `runtime/pi5` 与软件配置记录；不要从上一级 `runtime/` 覆盖新卡环境。历史命令为：
 
 ```bash
 # 启动已安装的驱动；保持终端运行，Ctrl+C 停止。
@@ -58,7 +64,7 @@ source ~/livox_runtime/env.sh
 python3 ~/livox_runtime/verify_livox_stream.py
 ```
 
-这个 Git 仓库保存的是代码和记录。**克隆仓库不会自动安装 SDK、私有 ROS 依赖或编译好的驱动。** `runtime/` 的脚本对应现有 `/home/xin/livox_runtime` 布局；仓库路径和运行目录可以不同。
+这个 Git 仓库保存的是代码和记录。**克隆仓库不会自动安装 SDK、ROS 依赖或编译好的驱动。** 历史 `runtime/` 和新卡 `runtime/pi5/` 都曾采用 `/home/xin/livox_runtime` 目录名，但内部依赖布局不同；仓库路径和实际运行目录也不同。
 
 ## 本次地址约定
 
@@ -70,7 +76,7 @@ python3 ~/livox_runtime/verify_livox_stream.py
 | 点云 / IMU | `/livox/lidar` / `/livox/imu` |
 | ROS2 域 | `10` |
 
-配置示例见 [MID360_config.example.json](configs/MID360_config.example.json)。修改 JSON 后保存并重启驱动即可，不用重新编译；实际运行文件在 `~/livox_runtime/config/MID360_config.json`。
+历史配置示例见 [MID360_config.example.json](configs/MID360_config.example.json)。新卡请看 [configs/pi5](configs/pi5/README.md)：官方驱动实际读取工作空间源码对应的 JSON，runtime 中的 JSON 是记录副本；FAST-LIO 实际读取 runtime 中的 YAML。修改并推送仓库配置不会自动部署。
 
 ## Git 记录与运行的关系
 
@@ -86,8 +92,8 @@ Windows VS Code
 
 `git push` 记录源码与文档；它不会自动更新驱动进程、设置网口或重新编译。建议以树莓派上的仓库作为日常开发位置，Windows 的本地副本用于离线查看和资料整理。两端若同时修改，提交后再拉取合并。
 
-## 当前限制
+## 历史故障与当前验收边界
 
-原系统已有的 APT/dpkg、ROS 和 SDK 文件损坏没有整体修复，本次通过独立目录恢复了采集。此仓库不包含运行依赖、SD 卡镜像、点云原始数据或 SSH 密钥。树莓派本地采集已验证；跨 Wi-Fi 接收、FAST-LIO 建图和长期稳定性需要分别测试。
+旧卡原系统的 APT/dpkg、ROS 和 SDK 文件损坏没有整体修复，当时通过独立目录恢复了采集。现在重新烧录的新卡已完成基础 ROS2 和雷达软件准备，但真实雷达采集、实机 FAST-LIO 建图、跨 Wi-Fi 接收与长期稳定性仍需分别测试。此仓库不包含运行依赖、SD 卡镜像、点云原始数据或 SSH 密钥。
 
 上游源码和版本见 [upstream-versions.json](upstream-versions.json)，来源和许可说明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

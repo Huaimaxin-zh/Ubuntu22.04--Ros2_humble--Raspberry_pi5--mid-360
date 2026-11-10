@@ -5,6 +5,8 @@
 
 完整资料见 [livox-mid360](livox-mid360/README.md)，包括带中文注释的启动脚本、原生点云/IMU检查器、故障排查报告，以及 VS Code Remote-SSH 和 GitHub 使用教程。
 
+**新卡当前使用 [runtime/pi5](livox-mid360/runtime/pi5/README.md) 的运行脚本。** Livox-SDK2、驱动和 FAST-LIO 已编译安装，13 项软件检查通过；本轮没有启动雷达驱动，实机采集和建图等待用户通知后验收。[完整软件配置记录](livox-mid360/docs/10-livox-fastlio-new-card-setup.md) 中保留了 PCL 检查名称及 FAST-LIO 编译内存问题的排查过程。
+
 - [Windows VS Code 连接树莓派](livox-mid360/docs/01-remote-ssh.md)
 - [用 Git 管理脚本和 Markdown](livox-mid360/docs/02-git-and-github.md)
 - [本次雷达配置故障报告](livox-mid360/docs/04-troubleshooting-report.md)
@@ -12,6 +14,7 @@
 - [2026-11-10 SD卡维修记录与实际结果](livox-mid360/docs/07-sd-card-recovery-report.md)
 - [SD卡维修指令、风险和交互说明](livox-mid360/docs/08-sd-card-recovery-commands.md)
 - [2026-11-10 新卡 ROS2 Humble / Git 配置与实测](livox-mid360/docs/09-ros2-git-new-card-setup.md)
+- [新卡 Livox-SDK2、驱动与 FAST-LIO 安装及软件验收](livox-mid360/docs/10-livox-fastlio-new-card-setup.md)
 
 2026-11-09 已用真实 MID360 在树莓派上验证：点云约 10 Hz、IMU 约 200 Hz，检查结果见 [实际测试 JSON](livox-mid360/evidence/2026-11-09-stream-result.json)。
 

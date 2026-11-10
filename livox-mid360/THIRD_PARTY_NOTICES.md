@@ -2,6 +2,7 @@
 
 - Livox ROS Driver2：<https://github.com/Livox-SDK/livox_ros_driver2>。
 - Livox SDK2：<https://github.com/Livox-SDK/Livox-SDK2>。
+- FAST-LIO ROS2：<https://github.com/Ericsii/FAST_LIO_ROS2>；新卡 YAML 基于提交 `2fffc570a25d0df172720bac034fbdb6a13d2162` 的 `config/mid360.yaml` 调整，原项目许可与版权继续适用。该提交仓库随附的许可原文留在 [configs/pi5/LICENSE-FAST-LIO.txt](configs/pi5/LICENSE-FAST-LIO.txt)。
 - ROS2 Humble：<https://docs.ros.org/en/humble/>。
 - Microsoft VS Code Remote-SSH：<https://code.visualstudio.com/docs/remote/ssh>。
 - GitHub SSH 认证：<https://docs.github.com/en/authentication/connecting-to-github-with-ssh>。
