@@ -16,6 +16,8 @@
 - [2026-11-10 新卡 ROS2 Humble / Git 配置与实测](livox-mid360/docs/09-ros2-git-new-card-setup.md)
 - [新卡 Livox-SDK2、驱动与 FAST-LIO 安装及软件验收](livox-mid360/docs/10-livox-fastlio-new-card-setup.md)
 - [新卡真实采集、FAST-LIO、PCD 与正常停止验收](livox-mid360/docs/11-mid360-fastlio-live-acceptance.md)
+- [Ubuntu 虚拟机接收树莓派数据并用 RViz 显示](livox-mid360/docs/12-vm-rviz-remote-visualization.md)
+- [树莓派 CPU、GPU 引擎、内存与温度监控](livox-mid360/docs/13-pi5-resource-monitor.md)
 
 2026-11-09 已用真实 MID360 在树莓派上验证：点云约 10 Hz、IMU 约 200 Hz，检查结果见 [实际测试 JSON](livox-mid360/evidence/2026-11-09-stream-result.json)。
 

@@ -11,4 +11,6 @@
 
 新卡 SDK 在官方锁定提交上应用了 [Linux 符号绑定补丁](patches/sdk-spdlog-symbol-binding.patch)，作用和哈希见 [补丁说明](patches/README.md)。SDK 应记录为官方基础提交加本地补丁；驱动源码恢复为官方基础提交，只保留本卡配置改变。
 
+[远程 RViz 配置](configs/rviz/remote_pi5.rviz) 派生自 FAST-LIO ROS2 提交 `2fffc570a25d0df172720bac034fbdb6a13d2162` 的 `rviz/fastlio.rviz`，调整了显示话题、QoS、点云样式与视角。原项目 GPLv2 许可和版权继续适用，许可原文见 [LICENSE-FAST-LIO.txt](configs/pi5/LICENSE-FAST-LIO.txt)。[资源监控说明](docs/13-pi5-resource-monitor.md) 引用树莓派 Linux 内核 V3D 源码解释 `gpu_stats` 计数口径；监控脚本不包含该内核源码。
+
 本仓库不包含第三方安装库、完整官方源码镜像、已下载的软件包或原始雷达数据。新增脚本和说明暂未替仓库所有者指定新的开源许可证；现有仓库若有 LICENSE，应先核对其适用范围。

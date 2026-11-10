@@ -17,5 +17,12 @@
   "new_card_sdk_patched_cmake_sha256": "10244ef009035975fa391a015a72634f3eba768fe13b8b02829967529dba1066",
   "new_card_sdk_library_sha256": "2afc324484893ea44e63ded891709bdba5ce5501e80f89c2ae8e6e235a3636b7",
   "new_card_driver_source_state": "official base commit, config changed; ineffective shutdown trial reverted",
-  "new_card_driver_lds_lidar_cpp_sha256": "637cac3ab27239717bb434ac35210551a98d17b08153e7205eb733da84a1153d"
+  "new_card_driver_lds_lidar_cpp_sha256": "637cac3ab27239717bb434ac35210551a98d17b08153e7205eb733da84a1153d",
+  "remote_rviz_config": "configs/rviz/remote_pi5.rviz",
+  "remote_rviz_upstream_path": "rviz/fastlio.rviz",
+  "remote_rviz_sha256": "46bb7d245a5d62fb245cb356cd882d38a1b44575704013c1a73ec1dc05fcd67d",
+  "remote_rviz_state": "prepared, deployed and fields checked; VM DDS reception and rendering not yet verified",
+  "resource_monitor": "runtime/pi5/monitor_resources.py",
+  "resource_monitor_sha256": "c9c08238e4b3998e9f22c6bbc382c83e64a2323cf4903e0bd922e0dbfc1143ef",
+  "remote_display_monitor_checkpoint": "evidence/2026-11-10-remote-rviz-resource-monitor.json"
 }

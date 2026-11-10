@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-10",
+  "platform": "Raspberry Pi 5 4GB / Ubuntu 22.04.5 aarch64 / kernel 6.8.0-1047-raspi / ROS2 Humble",
+  "provenance": {
+    "kind": "selected facts transcribed from prior tool and terminal output",
+    "fresh_hardware_capture_during_archiving": false,
+    "standalone_original_monitor_stdout_retained": false,
+    "note": "Resource samples preceded a display-timezone-only change. Final script was deployed and passed python3 -m py_compile; formulas were unchanged."
+  },
+  "artifacts": {
+    "monitor": {
+      "repository_path": "runtime/pi5/monitor_resources.py",
+      "deployment_path": "/home/xin/livox_runtime/monitor_resources.py",
+      "sha256": "c9c08238e4b3998e9f22c6bbc382c83e64a2323cf4903e0bd922e0dbfc1143ef",
+      "display_timezone": "Asia/Shanghai",
+      "system_mutations": false
+    },
+    "rviz": {
+      "repository_path": "configs/rviz/remote_pi5.rviz",
+      "deployment_path": "/home/xin/livox_runtime/rviz/remote_pi5.rviz",
+      "sha256": "46bb7d245a5d62fb245cb356cd882d38a1b44575704013c1a73ec1dc05fcd67d",
+      "upstream": "https://github.com/Ericsii/FAST_LIO_ROS2",
+      "upstream_commit": "2fffc570a25d0df172720bac034fbdb6a13d2162",
+      "upstream_path": "rviz/fastlio.rviz",
+      "yaml_and_field_checks_passed": true
+    }
+  },
+  "network": {
+    "pi_wifi": "192.168.0.103",
+    "vm_lan": "192.168.0.102",
+    "prior_pi_to_vm_ping": {"sent": 3, "received": 3},
+    "ros_domain_id": 10,
+    "ros_localhost_only": 0,
+    "rmw": "rmw_fastrtps_cpp",
+    "vm_dds_reception_verified": false,
+    "vm_rviz_rendering_verified": false
+  },
+  "monitor_samples": {
+    "interval_seconds": 1,
+    "cpu_overall_full_scale": "all cores = 100%",
+    "process_cpu_full_scale": "one core = 100%",
+    "gpu_source": "/sys/class/drm/card0/device/gpu_stats",
+    "gpu_formula": "each engine: 100 * delta(runtime_ns) / delta(timestamp_ns)",
+    "gpu_engines_must_not_be_summed": true,
+    "rows": [
+      {
+        "time_utc": "2026-11-10T05:06:33Z",
+        "cpu_overall_percent": 5.9,
+        "fastlio_process_cpu_percent": 19.7,
+        "driver_process_cpu_percent": 10.9,
+        "gpu_percent": {"bin": 0.0, "render": 0.0, "tfu": 0.0, "csd": 0.0},
+        "memory_used_mib": 1139,
+        "memory_total_mib": 3984,
+        "cpu_temperature_celsius": 57.9
+      },
+      {
+        "time_utc": "2026-11-10T05:06:34Z",
+        "cpu_overall_percent": 6.1,
+        "fastlio_process_cpu_percent": 20.7,
+        "driver_process_cpu_percent": 10.8,
+        "gpu_percent": {"bin": 0.0, "render": 0.0, "tfu": 0.0, "csd": 0.0},
+        "memory_used_mib": 1141,
+        "memory_total_mib": 3984,
+        "cpu_temperature_celsius": 57.3
+      },
+      {
+        "time_utc": "2026-11-10T05:06:35Z",
+        "cpu_overall_percent": 6.4,
+        "fastlio_process_cpu_percent": 19.8,
+        "driver_process_cpu_percent": 11.9,
+        "gpu_percent": {"bin": 0.0, "render": 0.0, "tfu": 0.0, "csd": 0.0},
+        "memory_used_mib": 1139,
+        "memory_total_mib": 3984,
+        "cpu_temperature_celsius": 57.9
+      }
+    ]
+  },
+  "limitations": [
+    "Three short observations are not a benchmark or long-term stability test.",
+    "LAN ping and valid RViz YAML do not establish remote DDS transport or rendering.",
+    "Pi GPU counters do not measure VM or Windows rendering load."
+  ]
+}

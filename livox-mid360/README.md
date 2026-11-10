@@ -12,6 +12,8 @@
 
 ## 先看哪里
 
+远程 RViz 配置与 CPU/GPU 监控脚本也已归档。监控已在树莓派短时实测；RViz 配置已部署并检查字段，虚拟机真实 DDS 接收与渲染仍待现场验证，不能把局域网 ping 通当作显示验收通过。
+
 | 想完成的事 | 文档 |
 | --- | --- |
 | 从系统检查、接线到最终验收，按顺序回顾全过程 | [本次配置全过程](docs/00-full-process.md) |
@@ -27,6 +29,8 @@
 | 新卡安装 ROS2 Humble、配置 Git，并理解实际验收结果 | [新卡配置记录](docs/09-ros2-git-new-card-setup.md)、[带注释脚本](scripts/setup/README.md) |
 | 新卡安装 SDK2、驱动和 FAST-LIO，理解软件验收与实机验收边界 | [软件配置记录](docs/10-livox-fastlio-new-card-setup.md)、[安装脚本](scripts/stack/README.md)、[新卡运行脚本](runtime/pi5/README.md) |
 | 看真实点云、IMU、算法输出、PCD 与退出检查，理解 SDK 修复 | [实机验收记录](docs/11-mid360-fastlio-live-acceptance.md)、[原生检查器](scripts/stack/native-verifier/README.md)、[SDK 补丁](patches/README.md) |
+| 在 Ubuntu 虚拟机接收 FAST-LIO 标准点云并用 RViz 显示 | [远程显示步骤](docs/12-vm-rviz-remote-visualization.md)、[RViz 配置](configs/rviz/README.md) |
+| 查看树莓派总体和各核 CPU、V3D GPU 引擎、进程、内存与温度 | [监控使用与指标解释](docs/13-pi5-resource-monitor.md)、[带注释脚本](runtime/pi5/monitor_resources.py) |
 
 ## 目录用途
 
@@ -44,8 +48,9 @@ examples/                SSH 配置示例，不含密钥
 scripts/setup/           新卡 ROS2 配置与验收脚本、最小 C++ 验证源码
 scripts/stack/           新卡 SDK2、驱动与 FAST-LIO 安装和检查脚本
 scripts/stack/native-verifier/  新卡低开销 C++ 实收检查器源码
-runtime/pi5/             新卡当前采用的运行脚本（上级 runtime 为旧卡历史）
+runtime/pi5/             新卡启动脚本和只读资源监控（上级 runtime 为旧卡历史）
 configs/pi5/             新卡配置的版本记录与实际部署位置说明
+configs/rviz/            虚拟机远程 RViz 配置与使用说明
 ```
 
 ## 旧卡历史启动方式（仅复盘）
